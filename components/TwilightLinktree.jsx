@@ -167,10 +167,10 @@ export default function TwilightMatrixLinktree() {
   }, [skyGlitch, glitchType]);
 
   const links = [
-    { title: "DAERYEOK CORPORATION", subtitle: "Critical Infrastructure & Legacy Remediation", href: "https://daeryeok.io/", icon: <Zap size={20} className="text-slate-300" />, glow: "group-hover/btn:shadow-slate-500/40" },
+    { title: "DAERYEOK CORPORATION", subtitle: "Critical Infrastructure & Legacy Remediation", href: "https://daeryeok.io/", icon: <Zap size={22} className="text-white" fill="white" />, glow: "group-hover/btn:shadow-slate-500/40" },
     { title: "EUMMAE", subtitle: "Cognitive Search & Handwriting OCR", href: "https://eummae.com/", icon: "🐮", glow: "group-hover/btn:shadow-cyan-500/40" },
     { title: "PIPATO PROTOCOLS", subtitle: "Standard Operating Procedures & Thermal Workflows", href: "https://pipa.to/", icon: "🍅", glow: "group-hover/btn:shadow-rose-500/40" },
-    { title: "AERYEOK LABS", subtitle: "Signal Intelligence & Aerial Telemetry", href: "https://aeryeoklabs.io/", icon: <Plane size={20} className="text-violet-300" />, glow: "group-hover/btn:shadow-violet-500/40" },
+    { title: "AERYEOK LABS", subtitle: "Signal Intelligence & Aerial Telemetry", href: "https://aeryeoklabs.io/", icon: <Plane size={22} className="text-white" fill="white" />, glow: "group-hover/btn:shadow-violet-500/40" },
   ];
 
   return (

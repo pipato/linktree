@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, Mail, Disc, Zap, Instagram, Globe } from 'lucide-react';
+import { Sparkles, Mail, Disc, Zap, Instagram, Globe, Heart } from 'lucide-react';
 
 export default function TwilightMatrixLinktree() {
   const canvasRef = useRef(null);
@@ -553,6 +553,9 @@ export default function TwilightMatrixLinktree() {
       {/* FLOATING DECORATIVE ELEMENTS */}
       <div className="fixed top-[15%] left-[8%] text-purple-500/10 pointer-events-none animate-pulse">
         <Zap size={80} />
+      </div>
+      <div className="fixed top-[12%] right-[8%] text-pink-500/10 pointer-events-none animate-pulse" style={{ animationDelay: '0.5s' }}>
+        <Heart size={70} />
       </div>
       <div className="fixed bottom-[15%] right-[8%] text-pink-500/10 pointer-events-none animate-pulse" style={{ animationDelay: '1s' }}>
         <Sparkles size={70} />

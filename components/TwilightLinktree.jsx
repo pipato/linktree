@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, Tv, Mail, PenTool, Disc, Zap, Instagram, Globe } from 'lucide-react';
+import { Sparkles, Plane, Mail, Disc, Zap, Instagram, Globe } from 'lucide-react';
 
 export default function TwilightMatrixLinktree() {
   const canvasRef = useRef(null);
@@ -167,10 +167,10 @@ export default function TwilightMatrixLinktree() {
   }, [skyGlitch, glitchType]);
 
   const links = [
-    { title: "DAERYEOK CORP", subtitle: "Critical Infrastructure & Legacy Remediation", href: "https://daeryeok.io/", icon: <Zap size={20} />, gradient: "from-slate-500 to-slate-700", glow: "group-hover/btn:shadow-slate-500/40" },
-    { title: "EUMMAE", subtitle: "Cognitive Search & Handwriting OCR", href: "https://eummae.com/", icon: <Sparkles size={20} />, gradient: "from-cyan-500 to-teal-600", glow: "group-hover/btn:shadow-cyan-500/40" },
-    { title: "PIPATO PROTOCOLS", subtitle: "Standard Operating Procedures & Thermal Workflows", href: "https://pipa.to/", icon: <PenTool size={20} />, gradient: "from-rose-500 to-pink-600", glow: "group-hover/btn:shadow-rose-500/40" },
-    { title: "AERYEOK LABS", subtitle: "Signal Intelligence & Aerial Telemetry", href: "https://aeryeoklabs.io/", icon: <Tv size={20} />, gradient: "from-violet-500 to-purple-600", glow: "group-hover/btn:shadow-violet-500/40" },
+    { title: "DAERYEOK CORPORATION", subtitle: "Critical Infrastructure & Legacy Remediation", href: "https://daeryeok.io/", icon: <Zap size={20} />, gradient: "from-slate-500 to-slate-700", glow: "group-hover/btn:shadow-slate-500/40" },
+    { title: "EUMMAE", subtitle: "Cognitive Search & Handwriting OCR", href: "https://eummae.com/", icon: <span className="text-xl">🐮</span>, gradient: "from-cyan-500 to-teal-600", glow: "group-hover/btn:shadow-cyan-500/40" },
+    { title: "PIPATO PROTOCOLS", subtitle: "Standard Operating Procedures & Thermal Workflows", href: "https://pipa.to/", icon: <span className="text-xl">🍅</span>, gradient: "from-rose-500 to-pink-600", glow: "group-hover/btn:shadow-rose-500/40" },
+    { title: "AERYEOK LABS", subtitle: "Signal Intelligence & Aerial Telemetry", href: "https://aeryeoklabs.io/", icon: <Plane size={20} />, gradient: "from-violet-500 to-purple-600", glow: "group-hover/btn:shadow-violet-500/40" },
   ];
 
   return (

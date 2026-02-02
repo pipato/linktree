@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Sparkles, ShoppingBag, Tv, Mail, PenTool, Disc, Zap, Instagram, Globe, Heart } from 'lucide-react';
+import { Sparkles, Tv, Mail, PenTool, Disc, Zap, Instagram, Globe } from 'lucide-react';
 
 export default function TwilightMatrixLinktree() {
   const canvasRef = useRef(null);
@@ -167,10 +167,10 @@ export default function TwilightMatrixLinktree() {
   }, [skyGlitch, glitchType]);
 
   const links = [
-    { title: "Dream Archive", subtitle: "Collected Artifacts", icon: <ShoppingBag size={20} />, gradient: "from-rose-500 to-pink-600", glow: "group-hover/btn:shadow-rose-500/40" },
-    { title: "Signal Logs", subtitle: "Video Transmissions", icon: <Tv size={20} />, gradient: "from-cyan-500 to-blue-600", glow: "group-hover/btn:shadow-cyan-500/40" },
-    { title: "Commissions", subtitle: "Custom Frequencies", icon: <PenTool size={20} />, gradient: "from-violet-500 to-purple-600", glow: "group-hover/btn:shadow-violet-500/40" },
-    { title: "Contact", subtitle: "Send Transmission", icon: <Mail size={20} />, gradient: "from-amber-500 to-orange-600", glow: "group-hover/btn:shadow-amber-500/40" },
+    { title: "DAERYEOK CORP", subtitle: "Critical Infrastructure & Legacy Remediation", href: "https://daeryeok.io/", icon: <Zap size={20} />, gradient: "from-slate-500 to-slate-700", glow: "group-hover/btn:shadow-slate-500/40" },
+    { title: "EUMMAE", subtitle: "Cognitive Search & Handwriting OCR", href: "https://eummae.com/", icon: <Sparkles size={20} />, gradient: "from-cyan-500 to-teal-600", glow: "group-hover/btn:shadow-cyan-500/40" },
+    { title: "PIPATO PROTOCOLS", subtitle: "Standard Operating Procedures & Thermal Workflows", href: "https://pipa.to/", icon: <PenTool size={20} />, gradient: "from-rose-500 to-pink-600", glow: "group-hover/btn:shadow-rose-500/40" },
+    { title: "AERYEOK LABS", subtitle: "Signal Intelligence & Aerial Telemetry", href: "https://aeryeoklabs.io/", icon: <Tv size={20} />, gradient: "from-violet-500 to-purple-600", glow: "group-hover/btn:shadow-violet-500/40" },
   ];
 
   return (
@@ -448,17 +448,24 @@ export default function TwilightMatrixLinktree() {
 
           {/* TITLE */}
           <div className="text-center mb-10">
-            <h1 className={`text-3xl font-bold tracking-tight mb-2 ${glitchActive ? 'text-glitch' : ''}`}
+            <h1 className={`text-2xl font-medium tracking-tight mb-3 ${glitchActive ? 'text-glitch' : ''}`}
                 style={{
-                  background: 'linear-gradient(90deg, #f9a8d4, #c4b5fd, #a5f3fc)',
+                  background: 'linear-gradient(90deg, #94a3b8, #c4b5fd, #94a3b8)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}>
-              twilight.signal
+              daeryeok amara
             </h1>
             
-            <div className="text-slate-400 text-[10px] tracking-[0.4em] uppercase">
-              <span>{skyGlitch ? 'REALITY_UNSTABLE' : 'perpetual dusk'}</span>
+            <div className="text-slate-400 text-[10px] tracking-[0.3em] uppercase h-4 relative overflow-hidden">
+              {/* Normal bio */}
+              <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-75 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}>
+                Operating from Vancouver, BC
+              </span>
+              {/* Glitch reveal - cosmic truth */}
+              <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-75 text-fuchsia-400/80 ${glitchActive || skyGlitch ? 'opacity-100' : 'opacity-0'}`}>
+                Systems Architect
+              </span>
             </div>
           </div>
 
@@ -467,7 +474,9 @@ export default function TwilightMatrixLinktree() {
             {links.map((link, idx) => (
               <a 
                 key={idx}
-                href="#"
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
                 className={`link-hover group/btn block w-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-2xl p-4 transition-all duration-300 hover:shadow-lg ${link.glow}`}
@@ -501,13 +510,16 @@ export default function TwilightMatrixLinktree() {
           {/* SOCIAL FOOTER */}
           <div className="mt-10 flex justify-center gap-5">
             {[
-              { icon: <Instagram size={18} />, hover: 'hover:text-pink-400 hover:shadow-pink-500/30' },
-              { icon: <Globe size={18} />, hover: 'hover:text-violet-400 hover:shadow-violet-500/30' },
-              { icon: <Heart size={18} />, hover: 'hover:text-rose-400 hover:shadow-rose-500/30' },
+              { icon: <Mail size={18} />, href: 'mailto:daeryeok@drkc.ca', hover: 'hover:text-slate-300 hover:shadow-slate-500/30', label: 'Communique' },
+              { icon: <Instagram size={18} />, href: 'https://www.instagram.com/aeryeok/', hover: 'hover:text-pink-400 hover:shadow-pink-500/30', label: 'Instagram' },
+              { icon: <Globe size={18} />, href: 'https://t.me/aeryeok', hover: 'hover:text-cyan-400 hover:shadow-cyan-500/30', label: 'Signal' },
             ].map((social, idx) => (
               <a 
                 key={idx}
-                href="#" 
+                href={social.href}
+                target={social.href.startsWith('mailto') ? undefined : '_blank'}
+                rel="noopener noreferrer"
+                title={social.label}
                 className={`w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-500 hover:bg-white/10 hover:border-white/20 hover:scale-110 transition-all duration-300 hover:shadow-lg ${social.hover}`}
               >
                 {social.icon}
@@ -515,10 +527,20 @@ export default function TwilightMatrixLinktree() {
             ))}
           </div>
 
+          {/* FOOTER */}
+          <div className="mt-8 text-center space-y-1">
+            <p className={`text-[9px] text-slate-500/60 tracking-[0.4em] uppercase transition-opacity duration-75 ${glitchActive ? 'text-glitch' : ''}`}>
+              MANAGING DIRECTOR // KALA VRIKA
+            </p>
+            <p className="text-[8px] text-slate-600/40 tracking-[0.3em]">
+              666 Burrard St, Vancouver
+            </p>
+          </div>
+
           {/* STATUS LINE */}
-          <div className="mt-6 text-center">
-            <p className="text-[8px] text-slate-500/40 tracking-[0.5em] uppercase">
-              {skyGlitch ? '◈ signal_interrupted ◈' : '◇ broadcasting from the void ◇'}
+          <div className="mt-4 text-center">
+            <p className="text-[8px] text-slate-500/30 tracking-[0.5em] uppercase">
+              {skyGlitch ? '◈ signal_interrupted ◈' : '◇ perpetual dusk ◇'}
             </p>
           </div>
         </div>

@@ -167,10 +167,10 @@ export default function TwilightMatrixLinktree() {
   }, [skyGlitch, glitchType]);
 
   const links = [
-    { title: "DAERYEOK CORPORATION", subtitle: "Critical Infrastructure & Legacy Remediation", href: "https://daeryeok.io/", icon: <Zap size={20} />, gradient: "from-slate-500 to-slate-700", glow: "group-hover/btn:shadow-slate-500/40" },
-    { title: "EUMMAE", subtitle: "Cognitive Search & Handwriting OCR", href: "https://eummae.com/", icon: <span className="text-xl">🐮</span>, gradient: "from-cyan-500 to-teal-600", glow: "group-hover/btn:shadow-cyan-500/40" },
-    { title: "PIPATO PROTOCOLS", subtitle: "Standard Operating Procedures & Thermal Workflows", href: "https://pipa.to/", icon: <span className="text-xl">🍅</span>, gradient: "from-rose-500 to-pink-600", glow: "group-hover/btn:shadow-rose-500/40" },
-    { title: "AERYEOK LABS", subtitle: "Signal Intelligence & Aerial Telemetry", href: "https://aeryeoklabs.io/", icon: <Plane size={20} />, gradient: "from-violet-500 to-purple-600", glow: "group-hover/btn:shadow-violet-500/40" },
+    { title: "DAERYEOK CORPORATION", subtitle: "Critical Infrastructure & Legacy Remediation", href: "https://daeryeok.io/", icon: <Zap size={20} className="text-slate-300" />, glow: "group-hover/btn:shadow-slate-500/40" },
+    { title: "EUMMAE", subtitle: "Cognitive Search & Handwriting OCR", href: "https://eummae.com/", icon: "🐮", glow: "group-hover/btn:shadow-cyan-500/40" },
+    { title: "PIPATO PROTOCOLS", subtitle: "Standard Operating Procedures & Thermal Workflows", href: "https://pipa.to/", icon: "🍅", glow: "group-hover/btn:shadow-rose-500/40" },
+    { title: "AERYEOK LABS", subtitle: "Signal Intelligence & Aerial Telemetry", href: "https://aeryeoklabs.io/", icon: <Plane size={20} className="text-violet-300" />, glow: "group-hover/btn:shadow-violet-500/40" },
   ];
 
   return (
@@ -483,8 +483,12 @@ export default function TwilightMatrixLinktree() {
               >
                 <div className="flex items-center gap-4">
                   {/* Icon */}
-                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${link.gradient} flex items-center justify-center text-white shadow-lg transition-transform duration-300 group-hover/btn:scale-110`}>
-                    {link.icon}
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center shadow-lg transition-transform duration-300 group-hover/btn:scale-110" style={{ backgroundColor: '#0B1018' }}>
+                    {typeof link.icon === 'string' ? (
+                      <span className="text-2xl">{link.icon}</span>
+                    ) : (
+                      link.icon
+                    )}
                   </div>
 
                   {/* Text */}

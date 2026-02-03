@@ -420,32 +420,39 @@ export default function TwilightMatrixLinktree() {
           <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl pointer-events-none" />
 
           {/* AVATAR */}
-          <div className="relative mb-8 flex justify-center">
+          <div className="relative mb-12 flex justify-center">
             <div className="relative">
+              {/* Big soft aura layers */}
+              <div className="absolute -inset-12 blur-3xl opacity-60">
+                <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-cyan-400/40 via-purple-500/30 to-pink-500/40" />
+              </div>
+              <div className="absolute -inset-8 blur-2xl opacity-80">
+                <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-purple-600/50 to-fuchsia-600/40" />
+              </div>
+
+              {/* Main container - square, thick neon border, hard glow */}
               <div 
-                className={`relative w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-fuchsia-400 p-[6px] ${glitchActive || skyGlitch ? 'avatar-glitch' : ''}`}
+                className={`relative w-80 h-80 rounded-3xl overflow-hidden border-8 border-transparent bg-gradient-to-br from-cyan-400/60 via-purple-500/60 to-fuchsia-500/60 p-2 ${glitchActive || skyGlitch ? 'avatar-glitch' : ''}`}
                 style={{
                   boxShadow: `
-                    0 0 50px 15px rgba(34, 211, 238, 0.6),
-                    0 0 90px 30px rgba(168, 85, 247, 0.5),
-                    0 0 130px 45px rgba(236, 72, 153, 0.4)
-                    ${glitchActive || skyGlitch 
-                      ? ', 0 0 170px 60px rgba(139, 92, 246, 0.8), -6px 4px 30px rgba(0, 255, 255, 0.5), 6px -4px 30px rgba(255, 0, 255, 0.5)' 
-                      : ''
-                    }
-                  `.trim()
+                    0 0 80px rgba(34, 211, 238, 0.7),
+                    0 0 140px rgba(168, 85, 247, 0.6),
+                    0 0 200px rgba(236, 72, 153, 0.5),
+                    inset 0 0 80px rgba(0, 0, 0, 0.4)
+                    ${glitchActive || skyGlitch ? ', 0 0 40px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6)' : ''}
+                  `
                 }}
               >
-                <div className="w-full h-full rounded-full overflow-hidden">
+                <div className="w-full h-full rounded-3xl overflow-hidden bg-black/60">
                   <img 
                     src="/profile-normal.png"
                     alt="Profile"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-100 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
                   />
                   <img 
                     src="/profile-glitch.png"
-                    alt="Profile Glitch"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-100 ${glitchActive || skyGlitch ? 'opacity-100' : 'opacity-0'}`}
+                    alt="Glitch"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 mix-blend-screen ${glitchActive || skyGlitch ? 'opacity-90' : 'opacity-0'}`}
                   />
                 </div>
               </div>
@@ -454,12 +461,15 @@ export default function TwilightMatrixLinktree() {
 
           {/* TITLE */}
           <div className="text-center mb-10">
-            <h1 className={`text-2xl font-medium tracking-tight mb-3 ${glitchActive ? 'text-glitch' : ''}`}
-                style={{
-                  background: 'linear-gradient(90deg, #94a3b8, #c4b5fd, #94a3b8)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                }}>
+            <h1 
+              className={`text-5xl font-light tracking-widest mb-3 ${glitchActive ? 'text-glitch' : ''}`}
+              style={{
+                background: 'linear-gradient(90deg, #a0d8ff, #e0b8ff, #ffb8f8)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: '0 0 30px rgba(224, 184, 255, 0.8), 0 0 60px rgba(160, 216, 255, 0.5)'
+              }}
+            >
               daeryeok amara
             </h1>
             

@@ -171,8 +171,8 @@ export default function TwilightMatrixLinktree() {
   const links = [
     { title: "AERYEOK", subtitle: "Aerial Signal Intelligence", href: "https://aeryeoklabs.io/", icon: "✈️", glow: "group-hover/btn:shadow-violet-500/40" },
     { title: "DAERYEOK", subtitle: "Critical Asset Modernization", href: "https://daeryeok.io/", icon: "⚡", glow: "group-hover/btn:shadow-slate-500/40" },
-    { title: "EUMMAE", subtitle: "Analogue Intelligence Pipelines", href: "https://eummae.com/", icon: "🐮", glow: "group-hover/btn:shadow-cyan-500/40" },
-    { title: "PIPATO", subtitle: "Precision Thermal Protocols", href: "https://pipa.to/", icon: "🍅", glow: "group-hover/btn:shadow-rose-500/40" },
+    { title: "EUMMAE", subtitle: "Analogue Intelligence", href: "https://eummae.com/", icon: "🐮", glow: "group-hover/btn:shadow-cyan-500/40" },
+    { title: "PIPATO", subtitle: "Thermal Protocols", href: "https://pipa.to/", icon: "🍅", glow: "group-hover/btn:shadow-rose-500/40" },
   ];
 
   return (
@@ -424,38 +424,37 @@ export default function TwilightMatrixLinktree() {
           <div className="relative mb-12 flex justify-center">
             <div className="relative">
               {/* Big soft aura layers */}
-              <div className="absolute -inset-12 blur-3xl opacity-60">
-                <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-cyan-400/40 via-purple-500/30 to-pink-500/40" />
+              <div className="absolute -inset-8 sm:-inset-12 blur-3xl opacity-60 pointer-events-none">
+                <div className="w-full h-full rounded-3xl bg-gradient-to-br from-cyan-400/40 via-purple-500/30 to-pink-500/40" />
               </div>
-              <div className="absolute -inset-8 blur-2xl opacity-80">
-                <div className="w-80 h-80 rounded-3xl bg-gradient-to-br from-purple-600/50 to-fuchsia-600/40" />
+              <div className="absolute -inset-4 sm:-inset-8 blur-2xl opacity-80 pointer-events-none">
+                <div className="w-full h-full rounded-3xl bg-gradient-to-br from-purple-600/50 to-fuchsia-600/40" />
               </div>
 
               {/* Main container - square, thick neon border, hard glow */}
               <div 
-                className={`relative w-80 h-80 rounded-3xl overflow-hidden border-8 border-transparent bg-gradient-to-br from-cyan-400/60 via-purple-500/60 to-fuchsia-500/60 p-2 ${glitchActive || skyGlitch ? 'avatar-glitch' : ''}`}
+                className={`relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border-4 sm:border-8 border-white/10 ${glitchActive || skyGlitch ? 'avatar-glitch' : ''}`}
                 style={{
                   boxShadow: `
-                    0 0 80px rgba(34, 211, 238, 0.7),
-                    0 0 140px rgba(168, 85, 247, 0.6),
-                    0 0 200px rgba(236, 72, 153, 0.5),
-                    inset 0 0 80px rgba(0, 0, 0, 0.4)
+                    0 0 60px rgba(34, 211, 238, 0.5),
+                    0 0 100px rgba(168, 85, 247, 0.4),
+                    0 0 140px rgba(236, 72, 153, 0.3)
                     ${glitchActive || skyGlitch ? ', 0 0 40px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.6)' : ''}
                   `
                 }}
               >
-                <div className="w-full h-full rounded-3xl overflow-hidden bg-black/60">
-                  <img 
-                    src="/profile-normal.png"
-                    alt="Profile"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
-                  />
-                  <img 
-                    src="/profile-glitch.png"
-                    alt="Glitch"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 mix-blend-screen ${glitchActive || skyGlitch ? 'opacity-90' : 'opacity-0'}`}
-                  />
-                </div>
+                {/* Normal profile */}
+                <img 
+                  src="/profile-normal.png"
+                  alt="Profile"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
+                />
+                {/* Glitch profile */}
+                <img 
+                  src="/profile-glitch.png"
+                  alt="Glitch"
+                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-200 ${glitchActive || skyGlitch ? 'opacity-100' : 'opacity-0'}`}
+                />
               </div>
             </div>
           </div>
@@ -524,11 +523,11 @@ export default function TwilightMatrixLinktree() {
                   </div>
 
                   {/* Text */}
-                  <div className="flex-1 text-left">
+                  <div className="flex-1 text-left min-w-0">
                     <h3 className="text-[15px] font-semibold text-slate-100 tracking-wide">
                       {link.title}
                     </h3>
-                    <p className="text-[10px] text-slate-400/60 tracking-widest uppercase">
+                    <p className="text-[9px] sm:text-[10px] text-slate-400/60 tracking-widest uppercase truncate">
                       {link.subtitle}
                     </p>
                   </div>

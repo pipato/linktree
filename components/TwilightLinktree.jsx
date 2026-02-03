@@ -422,9 +422,14 @@ export default function TwilightMatrixLinktree() {
           {/* AVATAR */}
           <div className="relative mb-8 flex justify-center">
             <div className="relative">
-              {/* Rotating rings */}
-              <div className="absolute -inset-4 rounded-full border border-dashed border-purple-400/30 animate-[spin_12s_linear_infinite]" />
-              <div className="absolute -inset-8 rounded-full border border-violet-400/20 animate-[spin_20s_linear_infinite_reverse]" />
+              {/* Glitch rings - only appear during glitch */}
+              {(glitchActive || skyGlitch) && (
+                <>
+                  <div className="absolute -inset-3 rounded-full border-2 border-dashed border-cyan-400/60 animate-[spin_0.5s_linear_infinite]" />
+                  <div className="absolute -inset-5 rounded-full border border-dashed border-fuchsia-500/50 animate-[spin_0.3s_linear_infinite_reverse]" />
+                  <div className="absolute -inset-7 rounded-full border border-dashed border-yellow-400/40 animate-[spin_0.7s_linear_infinite]" />
+                </>
+              )}
               
               {/* Avatar container with swapping images */}
               <div className={`relative w-28 h-28 rounded-full bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 p-[2px] shadow-lg shadow-purple-500/30 ${glitchActive ? 'avatar-glitch' : ''}`}>

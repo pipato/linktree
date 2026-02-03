@@ -462,19 +462,34 @@ export default function TwilightMatrixLinktree() {
 
           {/* TITLE */}
           <div className="text-center mb-10">
-            <h1 
-              className={`text-3xl sm:text-4xl font-light tracking-wider mb-3 whitespace-nowrap ${glitchActive ? 'text-glitch' : ''}`}
-              style={{
-                background: 'linear-gradient(90deg, #a0d8ff, #e0b8ff, #ffb8f8)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textShadow: '0 0 30px rgba(224, 184, 255, 0.8), 0 0 60px rgba(160, 216, 255, 0.5)'
-              }}
-            >
-              daeryeok amara
-            </h1>
+            <div className="relative h-12 overflow-hidden">
+              {/* Normal name */}
+              <h1 
+                className={`absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl font-light tracking-wider whitespace-nowrap transition-opacity duration-100 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
+                style={{
+                  background: 'linear-gradient(90deg, #a0d8ff, #e0b8ff, #ffb8f8)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textShadow: '0 0 30px rgba(224, 184, 255, 0.8), 0 0 60px rgba(160, 216, 255, 0.5)'
+                }}
+              >
+                daeryeok amara
+              </h1>
+              {/* Glitch reveal - government name */}
+              <h1 
+                className={`absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl font-light tracking-wider whitespace-nowrap transition-opacity duration-100 text-glitch ${glitchActive || skyGlitch ? 'opacity-100' : 'opacity-0'}`}
+                style={{
+                  background: 'linear-gradient(90deg, #00ffff, #ff00ff, #00ffff)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  textShadow: '0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.5)'
+                }}
+              >
+                derek amara
+              </h1>
+            </div>
             
-            <div className="text-slate-400 text-[10px] tracking-[0.3em] uppercase h-4 relative overflow-hidden">
+            <div className="text-slate-400 text-[10px] tracking-[0.3em] uppercase h-4 relative overflow-hidden mt-3">
               {/* Normal bio */}
               <span className={`absolute inset-0 flex items-center justify-center transition-opacity duration-75 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}>
                 Operating from Vancouver, BC

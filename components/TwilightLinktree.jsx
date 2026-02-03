@@ -171,8 +171,8 @@ export default function TwilightMatrixLinktree() {
   const links = [
     { title: "AERYEOK", subtitle: "Aerial Signal Intelligence", href: "https://aeryeoklabs.io/", icon: "✈️", glow: "group-hover/btn:shadow-violet-500/40" },
     { title: "DAERYEOK", subtitle: "Critical Asset Modernization", href: "https://daeryeok.io/", icon: "⚡", glow: "group-hover/btn:shadow-slate-500/40" },
-    { title: "EUMMAE", subtitle: "Analogue Intelligence", href: "https://eummae.com/", icon: "🐮", glow: "group-hover/btn:shadow-cyan-500/40" },
-    { title: "PIPATO", subtitle: "Thermal Protocols", href: "https://pipa.to/", icon: "🍅", glow: "group-hover/btn:shadow-rose-500/40" },
+    { title: "EUMMAE", subtitle: "Analogue Intelligence Pipelines", href: "https://eummae.com/", icon: "🐮", glow: "group-hover/btn:shadow-cyan-500/40" },
+    { title: "PIPATO", subtitle: "Precision Thermal Protocols", href: "https://pipa.to/", icon: "🍅", glow: "group-hover/btn:shadow-rose-500/40" },
   ];
 
   return (
@@ -527,7 +527,7 @@ export default function TwilightMatrixLinktree() {
                     <h3 className="text-[15px] font-semibold text-slate-100 tracking-wide">
                       {link.title}
                     </h3>
-                    <p className="text-[9px] sm:text-[10px] text-slate-400/60 tracking-widest uppercase truncate">
+                    <p className="text-[8px] text-slate-400/60 tracking-wider uppercase whitespace-nowrap">
                       {link.subtitle}
                     </p>
                   </div>

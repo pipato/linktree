@@ -11,35 +11,37 @@ export default function TwilightMatrixLinktree() {
   const [glitchType, setGlitchType] = useState('normal');
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  // Initialize stars & particles
+  // Initialize stars & particles - DENSE NIGHT SKY
   useEffect(() => {
-    const starCount = 180;
+    const starCount = 650;
     const generatedStars = Array.from({ length: starCount }).map((_, i) => ({
       id: i,
       top: Math.random() * 100,
       left: Math.random() * 100,
-      size: Math.random() * 2.5 + 0.5,
-      duration: Math.random() * 4 + 2,
-      delay: Math.random() * 6,
-      opacity: Math.random() * 0.6 + 0.2,
-      color: Math.random() > 0.9 ? '#fcd34d' : 
-             Math.random() > 0.75 ? '#f9a8d4' : 
-             Math.random() > 0.5 ? '#c4b5fd' : '#ffffff'
+      size: Math.random() * 1.8 + 0.3,
+      duration: Math.random() * 3 + 1.5,
+      delay: Math.random() * 10,
+      opacity: Math.random() * 0.7 + 0.1,
+      color: Math.random() > 0.92 ? '#fcd34d' :  // Gold
+             Math.random() > 0.85 ? '#f9a8d4' :  // Pink
+             Math.random() > 0.70 ? '#c4b5fd' :  // Violet
+             Math.random() > 0.50 ? '#93c5fd' :  // Soft Blue
+             '#ffffff'                           // White
     }));
     setStars(generatedStars);
 
-    const particleCount = 30;
+    const particleCount = 45;
     const generatedParticles = Array.from({ length: particleCount }).map((_, i) => ({
       id: i,
-      char: ['✧', '·', '⋆', '○', '◇', '♡'][Math.floor(Math.random() * 6)],
+      char: ['✧', '·', '⋆', '○', '◇', '♡', '⊹'][Math.floor(Math.random() * 7)],
       left: Math.random() * 100,
-      fontSize: Math.random() * 14 + 8,
-      duration: Math.random() * 20 + 25,
+      fontSize: Math.random() * 12 + 6,
+      duration: Math.random() * 15 + 20,
       delay: Math.random() * 15,
       color: Math.random() > 0.4 
         ? ['#e879f9', '#f472b6', '#f687b3', '#fbbf24'][Math.floor(Math.random() * 4)]
         : ['#818cf8', '#22d3ee'][Math.floor(Math.random() * 2)],
-      opacity: Math.random() * 0.35 + 0.1
+      opacity: Math.random() * 0.3 + 0.05
     }));
     setParticles(generatedParticles);
   }, []);
@@ -174,55 +176,54 @@ export default function TwilightMatrixLinktree() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden font-sans text-slate-200 bg-black selection:bg-fuchsia-500/50 selection:text-white">
+    <div className="relative min-h-screen w-full overflow-hidden font-sans text-slate-200 bg-[#02040a] selection:bg-fuchsia-500/50 selection:text-white">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Space Grotesk', sans-serif; }
 
-        /* PERPETUAL TWILIGHT */
+        /* DEEP NIGHT DUSK-TO-DAWN GRADIENT */
+        /* Stays on the night side (no oranges, no yellows, just deep purples/blues/teals) */
         .twilight-gradient {
           background: linear-gradient(
             180deg, 
-            #020617 0%,
-            #0f0720 15%,
-            #1e1b4b 35%,
-            #312e81 50%,
-            #4c1d95 65%,
-            #6b2176 80%,
-            #831843 92%,
-            #9f1239 100%
+            #010208 0%,    /* Deep Space Black */
+            #050a24 10%,   /* Dark Midnight Blue */
+            #0f172a 25%,   /* Slate Midnight */
+            #1e1b4b 45%,   /* Deep Indigo */
+            #312e81 60%,   /* Indigo Dawn-side */
+            #4c1d95 75%,   /* Deep Violet dusk-side */
+            #2e1065 88%,   /* Imperial Purple */
+            #1e0a3c 100%   /* Bottom Deep Purple */
           );
-          background-size: 100% 200%;
-          animation: twilightBreath 30s ease-in-out infinite alternate;
+          background-size: 100% 300%;
+          animation: twilightBreath 45s ease-in-out infinite alternate;
         }
 
         @keyframes twilightBreath {
           0% { background-position: 50% 0%; }
-          100% { background-position: 50% 35%; }
+          50% { background-position: 50% 50%; }
+          100% { background-position: 50% 100%; }
         }
 
-        /* SKY GLITCH - Reality breaking */
+        /* REALITY TEARING ANIMATIONS */
         .reality-failure {
-          animation: realityTear 0.12s steps(3) infinite;
+          animation: realityTear 0.15s steps(2) infinite;
         }
 
         .reality-failure-severe {
-          animation: realityTearSevere 0.1s steps(4) infinite;
+          animation: realityTearSevere 0.12s steps(3) infinite;
         }
 
         @keyframes realityTear {
           0% { filter: hue-rotate(0deg); transform: scale(1); }
-          33% { filter: hue-rotate(60deg) brightness(1.2); transform: scale(1.01) translateX(-3px); }
-          66% { filter: hue-rotate(-60deg) contrast(1.3); transform: scale(0.99) translateX(3px); }
+          50% { filter: hue-rotate(40deg) brightness(1.1); transform: translateX(-2px); }
           100% { filter: hue-rotate(0deg); transform: scale(1); }
         }
 
         @keyframes realityTearSevere {
-          0% { filter: hue-rotate(0deg) invert(0); transform: scale(1); }
-          25% { filter: hue-rotate(90deg) invert(0.1) saturate(2); transform: scale(1.02) translateX(-5px) skewX(1deg); }
-          50% { filter: hue-rotate(-90deg) brightness(1.5); transform: scale(0.98) translateX(5px) skewX(-1deg); }
-          75% { filter: hue-rotate(180deg) invert(0.05); transform: scale(1.01) skewY(0.5deg); }
-          100% { filter: hue-rotate(0deg) invert(0); transform: scale(1); }
+          0% { filter: hue-rotate(0deg); transform: translate(0); }
+          25% { filter: hue-rotate(120deg) invert(0.05); transform: translate(-4px, 1px); }
+          75% { filter: hue-rotate(-80deg) brightness(1.3); transform: translate(4px, -1px); }
         }
 
         /* COSMIC DRIFT */
@@ -233,8 +234,8 @@ export default function TwilightMatrixLinktree() {
 
         /* TWINKLE */
         @keyframes twinkle {
-          0%, 100% { opacity: var(--base-opacity, 0.3); transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.25); }
+          0%, 100% { opacity: var(--base-opacity, 0.3); transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.1); }
         }
 
         .star {
@@ -325,13 +326,13 @@ export default function TwilightMatrixLinktree() {
           );
         }
 
-        /* HORIZON GLOW */
+        /* HORIZON GLOW (Soft purple night glow) */
         .horizon-glow {
           background: radial-gradient(
-            ellipse 150% 50% at 50% 100%,
-            rgba(251, 113, 133, 0.15) 0%,
-            rgba(167, 139, 250, 0.1) 30%,
-            transparent 70%
+            ellipse 150% 60% at 50% 100%,
+            rgba(88, 28, 135, 0.15) 0%,
+            rgba(30, 27, 75, 0.1) 40%,
+            transparent 80%
           );
         }
       `}</style>
@@ -348,7 +349,7 @@ export default function TwilightMatrixLinktree() {
       {/* 2. HORIZON GLOW */}
       <div className="fixed inset-0 horizon-glow z-[1] pointer-events-none" />
 
-      {/* 3. COSMIC DRIFT STARS */}
+      {/* 3. ENHANCED DENSE STARS */}
       <div 
         className="fixed z-[2] pointer-events-none"
         style={{
@@ -356,7 +357,7 @@ export default function TwilightMatrixLinktree() {
           left: '-50%',
           width: '200%',
           height: '200%',
-          animation: 'cosmicDrift 300s linear infinite'
+          animation: 'cosmicDrift 500s linear infinite'
         }}
       >
         {stars.map((star) => (
@@ -369,7 +370,7 @@ export default function TwilightMatrixLinktree() {
               width: `${star.size}px`,
               height: `${star.size}px`,
               backgroundColor: star.color,
-              boxShadow: `0 0 ${star.size * 4}px ${star.color}`,
+              boxShadow: star.size > 1 ? `0 0 ${star.size * 3}px ${star.color}` : 'none',
               '--duration': `${star.duration}s`,
               '--delay': `${star.delay}s`,
               '--base-opacity': star.opacity,

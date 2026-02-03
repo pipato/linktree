@@ -536,20 +536,13 @@ export default function TwilightMatrixLinktree() {
             ))}
           </div>
 
-          {/* FOOTER */}
-          <div className="mt-8 text-center space-y-1">
-            <p className={`text-[9px] text-slate-500/60 tracking-[0.4em] uppercase transition-opacity duration-75 ${glitchActive ? 'text-glitch' : ''}`}>
-              MANAGING DIRECTOR // KALA VRIKA
-            </p>
-            <p className="text-[8px] text-slate-600/40 tracking-[0.3em]">
-              666 Burrard St, Vancouver
-            </p>
-          </div>
-
-          {/* STATUS LINE */}
-          <div className="mt-4 text-center">
-            <p className="text-[8px] text-slate-500/30 tracking-[0.5em] uppercase">
-              {skyGlitch ? '◈ signal_interrupted ◈' : '◇ perpetual dusk ◇'}
+          {/* STATUS LINE - pure signal */}
+          <div className="mt-5 text-center">
+            <p className={`text-[8px] tracking-[0.7em] uppercase font-light ${skyGlitch ? 'text-cyan-300 animate-pulse text-glitch' : 'text-purple-600/30'}`}>
+              {skyGlitch 
+                ? '◈ TRANSMISSION FRACTURED ◈' 
+                : '◇ SIGNAL ETERNAL ◇'
+              }
             </p>
           </div>
         </div>

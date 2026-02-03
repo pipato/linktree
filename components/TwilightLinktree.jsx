@@ -462,7 +462,7 @@ export default function TwilightMatrixLinktree() {
           {/* TITLE */}
           <div className="text-center mb-10">
             <h1 
-              className={`text-5xl font-light tracking-widest mb-3 ${glitchActive ? 'text-glitch' : ''}`}
+              className={`text-3xl sm:text-4xl font-light tracking-wider mb-3 whitespace-nowrap ${glitchActive ? 'text-glitch' : ''}`}
               style={{
                 background: 'linear-gradient(90deg, #a0d8ff, #e0b8ff, #ffb8f8)',
                 WebkitBackgroundClip: 'text',

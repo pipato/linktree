@@ -6,63 +6,73 @@ export default function TwilightMatrixLinktree() {
   
   const [stars, setStars] = useState([]);
   const [particles, setParticles] = useState([]);
+  const [shootingStars, setShootingStars] = useState([]);
   const [glitchActive, setGlitchActive] = useState(false);
   const [skyGlitch, setSkyGlitch] = useState(false);
   const [glitchType, setGlitchType] = useState('normal');
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  // Initialize stars & particles - DENSE NIGHT SKY
+  // Dense stars, particles, shooting stars
   useEffect(() => {
-    const starCount = 650;
+    const starCount = 1200;
     const generatedStars = Array.from({ length: starCount }).map((_, i) => ({
       id: i,
       top: Math.random() * 100,
       left: Math.random() * 100,
-      size: Math.random() * 1.8 + 0.3,
-      duration: Math.random() * 3 + 1.5,
+      size: Math.random() * 2 + 0.3,
+      duration: Math.random() * 4 + 2,
       delay: Math.random() * 10,
-      opacity: Math.random() * 0.7 + 0.1,
-      color: Math.random() > 0.92 ? '#fcd34d' :  // Gold
-             Math.random() > 0.85 ? '#f9a8d4' :  // Pink
-             Math.random() > 0.70 ? '#c4b5fd' :  // Violet
-             Math.random() > 0.50 ? '#93c5fd' :  // Soft Blue
-             '#ffffff'                           // White
+      opacity: Math.random() * 0.8 + 0.2,
+      color: Math.random() > 0.95 ? '#a78bfa' :  // Violet
+             Math.random() > 0.88 ? '#c4b5fd' :  // Soft violet
+             Math.random() > 0.75 ? '#93c5fd' :  // Blue
+             Math.random() > 0.50 ? '#22d3ee' :  // Cyan
+             '#ffffff'
     }));
     setStars(generatedStars);
 
-    const particleCount = 45;
+    const particleCount = 100;
     const generatedParticles = Array.from({ length: particleCount }).map((_, i) => ({
       id: i,
-      char: ['✧', '·', '⋆', '○', '◇', '♡', '⊹'][Math.floor(Math.random() * 7)],
+      char: ['✧', '✦', '⋆', '✶', '●', '◇', '♡', '❅', '⊹', '✿'][Math.floor(Math.random() * 10)],
       left: Math.random() * 100,
-      fontSize: Math.random() * 12 + 6,
-      duration: Math.random() * 15 + 20,
-      delay: Math.random() * 15,
-      color: Math.random() > 0.4 
-        ? ['#e879f9', '#f472b6', '#f687b3', '#fbbf24'][Math.floor(Math.random() * 4)]
-        : ['#818cf8', '#22d3ee'][Math.floor(Math.random() * 2)],
-      opacity: Math.random() * 0.3 + 0.05
+      fontSize: Math.random() * 16 + 8,
+      duration: Math.random() * 20 + 25,
+      delay: Math.random() * 20,
+      color: ['#e879f9', '#f472b6', '#a78bfa', '#22d3ee', '#c4b5fd', '#f687b3'][Math.floor(Math.random() * 6)],
+      opacity: Math.random() * 0.4 + 0.1
     }));
     setParticles(generatedParticles);
+
+    // Shooting stars
+    const shootCount = 8;
+    const generatedShoots = Array.from({ length: shootCount }).map((_, i) => ({
+      id: i,
+      top: Math.random() * 50,
+      leftStart: Math.random() * 30 - 20,
+      delay: Math.random() * 30,
+      duration: 3 + Math.random() * 4
+    }));
+    setShootingStars(generatedShoots);
   }, []);
 
-  // Glitch triggers
+  // Cranked glitch triggers
   useEffect(() => {
     const uiGlitchInterval = setInterval(() => {
-      if (Math.random() > 0.7) {
+      if (Math.random() > 0.55) {  // more often
         setGlitchActive(true);
-        setTimeout(() => setGlitchActive(false), 100 + Math.random() * 180);
+        setTimeout(() => setGlitchActive(false), 120 + Math.random() * 250);
       }
-    }, 2200 + Math.random() * 2000);
+    }, 1800 + Math.random() * 1800);
 
     const skyGlitchInterval = setInterval(() => {
-      if (Math.random() > 0.58) {
+      if (Math.random() > 0.45) {  // way more often
         const severity = Math.random();
-        setGlitchType(severity > 0.85 ? 'cascade' : severity > 0.5 ? 'severe' : 'normal');
+        setGlitchType(severity > 0.8 ? 'cascade' : severity > 0.45 ? 'severe' : 'normal');
         setSkyGlitch(true);
 
-        if (severity > 0.85) {
-          let pulses = 4 + Math.floor(Math.random() * 3);
+        if (severity > 0.8) {
+          let pulses = 6 + Math.floor(Math.random() * 5);
           const doPulse = (remaining) => {
             if (remaining <= 0) { setSkyGlitch(false); return; }
             setTimeout(() => {
@@ -70,15 +80,15 @@ export default function TwilightMatrixLinktree() {
               setTimeout(() => {
                 setSkyGlitch(true);
                 doPulse(remaining - 1);
-              }, 60);
-            }, 90 + Math.random() * 70);
+              }, 50);
+            }, 80 + Math.random() * 80);
           };
           doPulse(pulses);
         } else {
-          setTimeout(() => setSkyGlitch(false), 140 + Math.random() * 200);
+          setTimeout(() => setSkyGlitch(false), 200 + Math.random() * 300);
         }
       }
-    }, 3800 + Math.random() * 5000);
+    }, 3000 + Math.random() * 4000);
 
     return () => {
       clearInterval(uiGlitchInterval);
@@ -86,7 +96,7 @@ export default function TwilightMatrixLinktree() {
     };
   }, []);
 
-  // Noise/static canvas
+  // Amped static canvas
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -109,44 +119,45 @@ export default function TwilightMatrixLinktree() {
         
         if (skyGlitch) {
           if (glitchType === 'severe' || glitchType === 'cascade') {
-            data[i] = Math.random() > 0.5 ? noise : 0;
-            data[i + 1] = Math.random() > 0.7 ? noise * 0.5 : 0;
+            data[i] = Math.random() > 0.4 ? noise : 0;
+            data[i + 1] = Math.random() > 0.6 ? noise * 0.7 : 0;
             data[i + 2] = noise;
-            data[i + 3] = Math.random() > 0.3 ? 180 : 0;
+            data[i + 3] = Math.random() > 0.2 ? 220 : 0;
           } else {
             data[i] = noise;
-            data[i + 1] = 0;
-            data[i + 2] = noise + 50;
-            data[i + 3] = Math.random() > 0.5 ? 150 : 0;
+            data[i + 1] = noise * 0.3;
+            data[i + 2] = noise + 80;
+            data[i + 3] = Math.random() > 0.4 ? 180 : 0;
           }
         } else {
-          data[i] = noise * 0.3 + 20;
-          data[i + 1] = noise * 0.2;
-          data[i + 2] = noise * 0.4 + 30;
-          data[i + 3] = 15;
+          data[i] = noise * 0.4 + 30;
+          data[i + 1] = noise * 0.3;
+          data[i + 2] = noise * 0.5 + 40;
+          data[i + 3] = 20;
         }
       }
       
       ctx.putImageData(imageData, 0, 0);
 
-      const tearChance = skyGlitch ? (glitchType === 'cascade' ? 0.2 : 0.4) : 0.97;
+      // More tears
+      const tearChance = skyGlitch ? (glitchType === 'cascade' ? 0.1 : 0.3) : 0.95;
       if (Math.random() > tearChance) {
         const y = Math.random() * h;
-        const height = Math.random() * (skyGlitch ? 80 : 15) + 2;
+        const height = Math.random() * (skyGlitch ? 120 : 20) + 5;
         ctx.fillStyle = skyGlitch 
-          ? `rgba(${Math.random() > 0.5 ? '255, 0, 200' : '0, 255, 255'}, 0.4)` 
-          : 'rgba(255, 255, 255, 0.08)';
+          ? `rgba(${Math.random() > 0.5 ? '100, 255, 255' : '255, 100, 255'}, 0.5)` 
+          : 'rgba(255, 255, 255, 0.1)';
         ctx.fillRect(0, y, w, height);
         if (skyGlitch) {
-          const shift = (Math.random() - 0.5) * 30;
+          const shift = (Math.random() - 0.5) * 50;
           ctx.drawImage(canvas, shift, y, w, height, 0, y, w, height);
         }
       }
 
-      if (skyGlitch && Math.random() > 0.7) {
+      if (skyGlitch && Math.random() > 0.6) {
         const x = Math.random() * w;
-        const width = Math.random() * 20 + 5;
-        ctx.fillStyle = 'rgba(255, 100, 255, 0.3)';
+        const width = Math.random() * 40 + 10;
+        ctx.fillStyle = 'rgba(255, 150, 255, 0.4)';
         ctx.fillRect(x, 0, width, h);
       }
 
@@ -154,8 +165,8 @@ export default function TwilightMatrixLinktree() {
     };
 
     const handleResize = () => {
-      canvas.width = Math.floor(window.innerWidth / 4);
-      canvas.height = Math.floor(window.innerHeight / 4);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
     
     handleResize();
@@ -176,33 +187,44 @@ export default function TwilightMatrixLinktree() {
   ];
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden font-sans text-slate-200 bg-[#02040a] selection:bg-fuchsia-500/50 selection:text-white">
+    <div className="relative min-h-screen w-full overflow-hidden font-sans text-slate-200 bg-[#000000] selection:bg-fuchsia-500/50 selection:text-white">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         body { font-family: 'Space Grotesk', sans-serif; }
 
-        /* DEEP NIGHT DUSK-TO-DAWN GRADIENT */
-        /* Stays on the night side (no oranges, no yellows, just deep purples/blues/teals) */
+        /* DARKER DUSK-DAWN CYCLE - COLD ONLY */
         .twilight-gradient {
           background: linear-gradient(
-            180deg, 
-            #010208 0%,    /* Deep Space Black */
-            #050a24 10%,   /* Dark Midnight Blue */
-            #0f172a 25%,   /* Slate Midnight */
-            #1e1b4b 45%,   /* Deep Indigo */
-            #312e81 60%,   /* Indigo Dawn-side */
-            #4c1d95 75%,   /* Deep Violet dusk-side */
-            #2e1065 88%,   /* Imperial Purple */
-            #1e0a3c 100%   /* Bottom Deep Purple */
+            180deg,
+            #000000 0%,
+            #0a0020 15%,
+            #15053a 30%,
+            #200f55 45%,
+            #2a1470 60%,
+            #3a1a85 75%,
+            #331460 90%,
+            #1e0a40 100%
           );
-          background-size: 100% 300%;
-          animation: twilightBreath 45s ease-in-out infinite alternate;
+          background-size: 100% 400%;
+          animation: twilightBreath 70s ease-in-out infinite alternate;
         }
 
         @keyframes twilightBreath {
           0% { background-position: 50% 0%; }
-          50% { background-position: 50% 50%; }
           100% { background-position: 50% 100%; }
+        }
+
+        /* SHOOTING STAR */
+        @keyframes shootingStar {
+          0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateX(150vw) translateY(150vh) rotate(-45deg); opacity: 0; }
+        }
+
+        .shooting {
+          animation: shootingStar var(--duration) linear infinite;
+          animation-delay: var(--delay);
         }
 
         /* REALITY TEARING ANIMATIONS */
@@ -346,8 +368,8 @@ export default function TwilightMatrixLinktree() {
           : ''
       }`} />
 
-      {/* 2. HORIZON GLOW */}
-      <div className="fixed inset-0 horizon-glow z-[1] pointer-events-none" />
+      {/* 2. HORIZON GLOW - DEEPER */}
+      <div className="fixed inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(ellipse 180% 70% at 50% 100%, rgba(60, 20, 120, 0.25) 0%, transparent 70%)' }} />
 
       {/* 3. ENHANCED DENSE STARS */}
       <div 
@@ -357,7 +379,7 @@ export default function TwilightMatrixLinktree() {
           left: '-50%',
           width: '200%',
           height: '200%',
-          animation: 'cosmicDrift 500s linear infinite'
+          animation: 'cosmicDrift 600s linear infinite'
         }}
       >
         {stars.map((star) => (
@@ -401,11 +423,29 @@ export default function TwilightMatrixLinktree() {
         ))}
       </div>
 
-      {/* 5. NOISE CANVAS */}
+      {/* 4.5 SHOOTING STARS */}
+      <div className="fixed inset-0 z-[3] pointer-events-none overflow-hidden">
+        {shootingStars.map((s) => (
+          <div
+            key={s.id}
+            className="absolute w-1 h-1 shooting"
+            style={{
+              '--duration': `${s.duration}s`,
+              '--delay': `${s.delay}s`,
+              top: `${s.top}%`,
+              left: `${s.leftStart}%`,
+            }}
+          >
+            <div className="absolute w-full h-full bg-white rounded-full" style={{ boxShadow: '0 0 20px 4px #ffffff' }} />
+            <div className="absolute -left-40 top-0.5 w-40 h-0.5 bg-gradient-to-r from-white to-transparent opacity-80" />
+          </div>
+        ))}
+      </div>
+
+      {/* 5. NOISE CANVAS - HIGHER OPACITY */}
       <canvas 
         ref={canvasRef} 
-        className="fixed inset-0 w-full h-full z-[4] mix-blend-screen opacity-60 pointer-events-none"
-        style={{ imageRendering: 'pixelated' }} 
+        className="fixed inset-0 w-full h-full z-[4] mix-blend-screen opacity-75 pointer-events-none"
       />
 
       {/* 6. SCANLINES & VIGNETTE */}

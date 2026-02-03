@@ -422,29 +422,30 @@ export default function TwilightMatrixLinktree() {
           {/* AVATAR */}
           <div className="relative mb-8 flex justify-center">
             <div className="relative">
-              {/* Glitch rings - only appear during glitch */}
-              {(glitchActive || skyGlitch) && (
-                <>
-                  <div className="absolute -inset-3 rounded-full border-2 border-dashed border-cyan-400/60 animate-[spin_0.5s_linear_infinite]" />
-                  <div className="absolute -inset-5 rounded-full border border-dashed border-fuchsia-500/50 animate-[spin_0.3s_linear_infinite_reverse]" />
-                  <div className="absolute -inset-7 rounded-full border border-dashed border-yellow-400/40 animate-[spin_0.7s_linear_infinite]" />
-                </>
-              )}
-              
-              {/* Avatar container with swapping images */}
-              <div className={`relative w-28 h-28 rounded-full bg-gradient-to-br from-violet-600 via-purple-600 to-fuchsia-600 p-[2px] shadow-lg shadow-purple-500/30 ${glitchActive ? 'avatar-glitch' : ''}`}>
-                <div className="w-full h-full rounded-full overflow-hidden relative">
-                  {/* Normal profile */}
+              <div 
+                className={`relative w-32 h-32 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-fuchsia-400 p-[6px] ${glitchActive || skyGlitch ? 'avatar-glitch' : ''}`}
+                style={{
+                  boxShadow: `
+                    0 0 50px 15px rgba(34, 211, 238, 0.6),
+                    0 0 90px 30px rgba(168, 85, 247, 0.5),
+                    0 0 130px 45px rgba(236, 72, 153, 0.4)
+                    ${glitchActive || skyGlitch 
+                      ? ', 0 0 170px 60px rgba(139, 92, 246, 0.8), -6px 4px 30px rgba(0, 255, 255, 0.5), 6px -4px 30px rgba(255, 0, 255, 0.5)' 
+                      : ''
+                    }
+                  `.trim()
+                }}
+              >
+                <div className="w-full h-full rounded-full overflow-hidden">
                   <img 
                     src="/profile-normal.png"
                     alt="Profile"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-75 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-100 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
                   />
-                  {/* Glitch profile - shows during reality breaks */}
                   <img 
                     src="/profile-glitch.png"
                     alt="Profile Glitch"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-75 ${glitchActive || skyGlitch ? 'opacity-100' : 'opacity-0'}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-100 ${glitchActive || skyGlitch ? 'opacity-100' : 'opacity-0'}`}
                   />
                 </div>
               </div>

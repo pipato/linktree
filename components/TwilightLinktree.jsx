@@ -6,7 +6,6 @@ export default function TwilightMatrixLinktree() {
   
   const [stars, setStars] = useState([]);
   const [particles, setParticles] = useState([]);
-  const [shootingStars, setShootingStars] = useState([]);
   const [glitchActive, setGlitchActive] = useState(false);
   const [skyGlitch, setSkyGlitch] = useState(false);
   const [glitchType, setGlitchType] = useState('normal');
@@ -43,17 +42,6 @@ export default function TwilightMatrixLinktree() {
       opacity: Math.random() * 0.4 + 0.1
     }));
     setParticles(generatedParticles);
-
-    // Shooting stars
-    const shootCount = 8;
-    const generatedShoots = Array.from({ length: shootCount }).map((_, i) => ({
-      id: i,
-      top: Math.random() * 50,
-      leftStart: Math.random() * 30 - 20,
-      delay: Math.random() * 30,
-      duration: 3 + Math.random() * 4
-    }));
-    setShootingStars(generatedShoots);
   }, []);
 
   // Cranked glitch triggers
@@ -209,22 +197,26 @@ export default function TwilightMatrixLinktree() {
           animation: twilightBreath 70s ease-in-out infinite alternate;
         }
 
+        /* ALTERNATE GLITCH GRADIENT - more cyan/teal */
+        .twilight-gradient-alt {
+          background: linear-gradient(
+            180deg,
+            #010208 0%,
+            #051a24 12%,
+            #0a2a3a 28%,
+            #0f3a4a 42%,
+            #1a4a5a 55%,
+            #2a5a6a 68%,
+            #1a3a4a 82%,
+            #0a2030 100%
+          );
+          background-size: 100% 400%;
+          animation: twilightBreath 70s ease-in-out infinite alternate;
+        }
+
         @keyframes twilightBreath {
           0% { background-position: 50% 0%; }
           100% { background-position: 50% 100%; }
-        }
-
-        /* SHOOTING STAR */
-        @keyframes shootingStar {
-          0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          100% { transform: translateX(150vw) translateY(150vh) rotate(-45deg); opacity: 0; }
-        }
-
-        .shooting {
-          animation: shootingStar var(--duration) linear infinite;
-          animation-delay: var(--delay);
         }
 
         /* REALITY TEARING ANIMATIONS */
@@ -359,17 +351,21 @@ export default function TwilightMatrixLinktree() {
         }
       `}</style>
 
-      {/* 1. TWILIGHT SKY */}
-      <div className={`fixed inset-0 twilight-gradient z-0 ${
+      {/* 1. TWILIGHT SKY - DUAL GRADIENTS */}
+      {/* Normal gradient */}
+      <div className={`fixed inset-0 twilight-gradient z-0 transition-opacity duration-200 ${
+        skyGlitch ? 'opacity-0' : 'opacity-100'
+      }`} />
+      {/* Glitch gradient - cyan/teal alternate */}
+      <div className={`fixed inset-0 twilight-gradient-alt z-0 transition-opacity duration-200 ${
         skyGlitch 
-          ? (glitchType === 'severe' || glitchType === 'cascade') 
-            ? 'reality-failure-severe' 
-            : 'reality-failure'
-          : ''
+          ? `opacity-100 ${(glitchType === 'severe' || glitchType === 'cascade') ? 'reality-failure-severe' : 'reality-failure'}`
+          : 'opacity-0'
       }`} />
 
-      {/* 2. HORIZON GLOW - DEEPER */}
-      <div className="fixed inset-0 z-[1] pointer-events-none" style={{ background: 'radial-gradient(ellipse 180% 70% at 50% 100%, rgba(60, 20, 120, 0.25) 0%, transparent 70%)' }} />
+      {/* 2. HORIZON GLOW - swaps during glitch */}
+      <div className={`fixed inset-0 z-[1] pointer-events-none transition-opacity duration-200 ${skyGlitch ? 'opacity-0' : 'opacity-100'}`} style={{ background: 'radial-gradient(ellipse 180% 70% at 50% 100%, rgba(60, 20, 120, 0.25) 0%, transparent 70%)' }} />
+      <div className={`fixed inset-0 z-[1] pointer-events-none transition-opacity duration-200 ${skyGlitch ? 'opacity-100' : 'opacity-0'}`} style={{ background: 'radial-gradient(ellipse 180% 70% at 50% 100%, rgba(20, 120, 120, 0.3) 0%, transparent 70%)' }} />
 
       {/* 3. ENHANCED DENSE STARS */}
       <div 
@@ -419,25 +415,6 @@ export default function TwilightMatrixLinktree() {
             }}
           >
             {p.char}
-          </div>
-        ))}
-      </div>
-
-      {/* 4.5 SHOOTING STARS */}
-      <div className="fixed inset-0 z-[3] pointer-events-none overflow-hidden">
-        {shootingStars.map((s) => (
-          <div
-            key={s.id}
-            className="absolute w-1 h-1 shooting"
-            style={{
-              '--duration': `${s.duration}s`,
-              '--delay': `${s.delay}s`,
-              top: `${s.top}%`,
-              left: `${s.leftStart}%`,
-            }}
-          >
-            <div className="absolute w-full h-full bg-white rounded-full" style={{ boxShadow: '0 0 20px 4px #ffffff' }} />
-            <div className="absolute -left-40 top-0.5 w-40 h-0.5 bg-gradient-to-r from-white to-transparent opacity-80" />
           </div>
         ))}
       </div>

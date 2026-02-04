@@ -8,7 +8,7 @@ const TwilightLinktree = dynamic(
 )
 
 export default function Home() {
-  const siteUrl = 'https://linktree-pipato.vercel.app' // Update this after deployment
+  const siteUrl = 'https://daer.so'
   const title = 'Daeryeok Amara'
   const description = 'Systems Architect. Operating from Vancouver, BC. Critical Infrastructure, Cognitive Search, and Signal Intelligence.'
   

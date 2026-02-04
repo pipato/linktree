@@ -11,6 +11,8 @@ export default function Home() {
   const siteUrl = 'https://daer.so'
   const title = 'Daeryeok Amara'
   const description = 'Systems Architect. Operating from Vancouver, BC. Critical Infrastructure, Cognitive Search, and Signal Intelligence.'
+  const publishedDate = '2026-02-03'
+  const modifiedDate = '2026-02-04'
   
   return (
     <>
@@ -32,6 +34,8 @@ export default function Home() {
         <meta property="og:description" content={description} />
         <meta property="og:image" content={`${siteUrl}/og-image.png`} />
         <meta property="og:site_name" content="Daeryeok Amara" />
+        <meta property="article:published_time" content={publishedDate} />
+        <meta property="article:modified_time" content={modifiedDate} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />

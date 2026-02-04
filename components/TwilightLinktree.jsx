@@ -479,7 +479,7 @@ export default function TwilightMatrixLinktree() {
           {/* TITLE */}
           <div className="text-center mb-10">
             <div className="relative h-12 overflow-hidden">
-              {/* Normal name */}
+              {/* Normal name - the real H1 */}
               <h1 
                 className={`absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl font-light tracking-wider whitespace-nowrap transition-opacity duration-100 ${glitchActive || skyGlitch ? 'opacity-0' : 'opacity-100'}`}
                 style={{
@@ -491,8 +491,9 @@ export default function TwilightMatrixLinktree() {
               >
                 daeryeok amara
               </h1>
-              {/* Glitch reveal - government name */}
-              <h1 
+              {/* Glitch reveal - decorative span, not h1 for SEO */}
+              <span 
+                aria-hidden="true"
                 className={`absolute inset-0 flex items-center justify-center text-3xl sm:text-4xl font-light tracking-wider whitespace-nowrap transition-opacity duration-100 text-glitch ${glitchActive || skyGlitch ? 'opacity-100' : 'opacity-0'}`}
                 style={{
                   background: 'linear-gradient(90deg, #00ffff, #ff00ff, #00ffff)',
@@ -502,7 +503,7 @@ export default function TwilightMatrixLinktree() {
                 }}
               >
                 derek amara
-              </h1>
+              </span>
             </div>
             
             <div className="text-slate-400 text-[10px] tracking-[0.3em] uppercase h-4 relative overflow-hidden mt-3">
